@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8"/>
+    <title>Wikidata Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="lodash.min.js"></script>
+    <script src="opentype.js"></script>
+    <script src="paper-full.js"></script>
+    <script src="paper-offset.js"></script>
+    <script src="generator.js"></script>
+
+  </head>
+  <body>
+
+	<div id="infobox">
+		<a href="https://twitter.com/Bleeptrack">by bleeptrack</a>&nbsp;-&nbsp;<a href="https://github.com/bleeptrack/36c3-generator">Code on Github</a>
+	</div>
+	<div class="zoom">
+		<button onclick="zoomIn()">+</button></br></br>
+		<button onclick="zoomOut()">-</button>
+	</div>
+	<div class="menue">
+
+			<div class="stagecontent">
+				<input type="text" id="simulationtext" placeholder="your word" autocomplete="off"></input>
+			</div>
+			<div class="stagecontent">
+				<button onclick="updateText()">&gt;</button>
+			</div>
+
+
+			<div class="stagecontent">
+				<button class="orangestyle" onclick="toggleColor()">toggle background</button>
+			</div>
+
+
+			<div class="stagecontent">
+				<button onclick="downloadPNG()">save PNG</button>
+			</div>
+			<div class="stagecontent">
+				<button onclick="downloadSVG()">save SVG</button>
+			</div>
+
+    </div>
+    <canvas id="paperCanvas" resize="true"></canvas>
+  </body>
+</html>

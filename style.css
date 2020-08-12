@@ -1,0 +1,118 @@
+ @font-face {
+  font-family: Noto;
+  src: url(NotoSans-Bold.ttf);
+}
+
+html,
+body {
+    height: 100%;
+	color: #D0D0CE;
+	margin:0;
+	padding: 0;
+}
+
+
+body{
+	background-color: black;
+}
+
+.zoom{
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 5px;
+}
+
+#infobox{
+position: fixed;
+bottom: 5px;
+right: 5px;
+color: #990000;
+}
+
+#infobox>a{
+	color: #990000;
+	font-family: sans-serif;
+	font-size: 0.8vw;
+	text-decoration: none;
+}
+
+#infobox>a:hover{
+	color: #FE5000;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+
+.menue{
+	position: fixed;
+	top: 0px;
+	display: flex;
+	width: 100%;
+}
+
+p{
+	text-align: center;
+	font-family: "BlackoutMidnight", sans-serif;
+}
+
+h2{
+	margin-left:2em;
+	text-align: center;
+	font-size: 1vw;
+	min-height: 1vw;
+	font-family: "Noto", sans-serif;
+}
+
+
+.stagecontent{
+	height: calc(100% - 2.5em);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 1em;
+}
+
+
+textarea, input[type="text"]{
+	font-size: 0.9vw;
+	border: none;
+	color: #339966;
+	font-family: sans-serif;
+	padding: 5px;
+	background-color: transparent;
+	border: 2px solid #339966;
+	height: 26px;
+	margin-right: -20px;
+}
+
+button{
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: 'Noto', sans-serif;
+  text-decoration: none;
+  color: #339966;
+  border: 2px solid #339966;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  background-color: transparent;
+}
+
+button:hover{
+  color: #006699;
+  border: 2px solid #006699;
+}
+
+
+
+
+
