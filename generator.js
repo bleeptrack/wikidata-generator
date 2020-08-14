@@ -65,7 +65,8 @@ function generate(){
 
 
 		centerLetter = _.sample(letters);
-		centerLetter.fillColor = lightColor;
+		centerLetter.fillColor = darkTheme ? lightColor : darkColor;
+        console.log(centerLetter);
 
 		for(let i = 0; i< _.random(8,15); i++){
 			setBlob(centerLetter);
@@ -76,6 +77,8 @@ function generate(){
 		setBirthdayText();
 
         coloredLines.bringToFront();
+
+
 
         if(textBlob.length<2){
             updateText();
@@ -172,7 +175,7 @@ function setBlob(letter){
 		circ.scale(3);
 		textBlob.push(circ);
 	}
-	circ.fillColor = lightColor;
+	circ.fillColor = darkTheme ? lightColor : darkColor;
 	blobs.push(circ);
 }
 
@@ -190,14 +193,18 @@ function textOnBlob(text1, text2, blob, offset){
 	let t2 = text2;
 	t2.bounds.topCenter = t1.bounds.bottomCenter.add([0,20]);
 	let tGroup = new Group(t1,t2);
-	tGroup.fillColor = 'white';
+	tGroup.fillColor = darkTheme ? 'white' : darkColor;
 
 	tGroup.position = c1.position;
 	let w = tGroup.bounds.width;
 	let h = tGroup.bounds.height;
 	tGroup.scale((c1.bounds.height) / (Math.sqrt(w*w + h*h)) * 0.7);
-	if(c1.fillColor && c1.fillColor.equals('white')){
-		tGroup.fillColor = 'black';
+	if(c1.fillColor){
+        if(darkTheme && c1.fillColor.equals(lightColor)){
+            tGroup.fillColor = 'black';
+        }else if(!darkTheme && c1.fillColor.equals(darkColor)){
+            tGroup.fillColor = lightColor;
+        }
 	}
 	if(offset){
 		tGroup.position = tGroup.position.add(offset);
@@ -237,18 +244,19 @@ function decorateBlobs(){
 
 		let variation = _.random(0,2);
 		let deco = blob.clone();
+        console.log(darkTheme ? 'lightColor' : 'darkColor');
 
 		switch(variation){
 			case 0:
 				deco.scale(0.8);
-				deco.strokeColor = 'black';
+				deco.strokeColor = darkTheme ? 'black' : lightColor;
 				deco.dashArray = getRandomDashArray(deco);
 				deco.strokeWidth = _.random(3,12);
 				break;
 			case 1:
 				blob.scale(0.8);
 				deco.fillColor = null;
-				deco.strokeColor = lightColor;
+				deco.strokeColor = darkTheme ? lightColor : darkColor;
 				deco.dashArray = getRandomDashArray(deco);
 				deco.strokeWidth = _.random(3,12);
 				break;
@@ -257,9 +265,9 @@ function decorateBlobs(){
 				blob.fillColor = null;
 				blob.strokeWidth = _.random(3,12);
 				blob.dashArray = getRandomDashArray(blob);
-				blob.strokeColor = lightColor;
+				blob.strokeColor = darkTheme ? lightColor : darkColor;
 				deco.fillColor = null;
-				deco.strokeColor = lightColor;
+				deco.strokeColor = darkTheme ? lightColor : darkColor;
 				deco.dashArray = getRandomDashArray(deco);
 				deco.strokeWidth = _.random(3,12);
 				break;
@@ -282,7 +290,7 @@ function connectBlobs(){
 		for(let j = i+1; j<blobs.length; j++){
 
 			let line = new Path.Line(blobs[i].position, blobs[j].position);
-			line.strokeColor = lightColor;
+			line.strokeColor = darkTheme ? lightColor : darkColor;
 			line.strokeWidth = _.random(3,9);
 
 			let b1 = PaperOffset.offset(blobs[i], 20, { join: 'round', insert:false })
@@ -383,7 +391,10 @@ function downloadPNG(){
 }
 
 function updateText(){
-	simText = document.getElementById('simulationtext').value.toUpperCase();
+	let inptext = document.getElementById('simulationtext').value.toUpperCase().trim();
+    if(inptext.length > 0){
+        simText = inptext
+    }
 	project.activeLayer.removeChildren();
 	letters = [];
 	blobs = [];
