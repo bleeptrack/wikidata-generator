@@ -21,29 +21,29 @@
 		<button onclick="zoomIn()">+</button></br></br>
 		<button onclick="zoomOut()">-</button>
 	</div>
-	<div class="menue">
+	<form class="menue">
 
 			<div class="stagecontent">
 				<input type="text" id="simulationtext" placeholder="your word" autocomplete="off"></input>
 			</div>
 			<div class="stagecontent">
-				<button onclick="updateText()">&gt;</button>
+				<button type="submit" onclick="event.preventDefault(); updateText()">&gt;</button>
 			</div>
 
 
 			<div class="stagecontent">
-				<button class="orangestyle" onclick="toggleColor()">toggle background</button>
+				<button type="button" class="orangestyle" onclick="toggleColor()">toggle background</button>
 			</div>
 
 
 			<div class="stagecontent">
-				<button onclick="downloadPNG()">save PNG</button>
+				<button type="button" onclick="downloadPNG()">save PNG</button>
 			</div>
 			<div class="stagecontent">
-				<button onclick="downloadSVG()">save SVG</button>
+				<button type="button" onclick="downloadSVG()">save SVG</button>
 			</div>
 
-    </div>
+    </form>
     <canvas id="paperCanvas" resize="true"></canvas>
   </body>
 </html>
